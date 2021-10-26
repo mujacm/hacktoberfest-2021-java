@@ -1,0 +1,51 @@
+package com.company;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class RockPS {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random r=new Random();
+        int comp=r.nextInt(4);
+
+        System.out.println("*****************THIS IS A GAME OF ROCK, PAPER AND SCISSOR******************\n");
+        System.out.println("FOR ROCK ENTER 0");
+        System.out.println("FOR PAPER ENTER 1");
+        System.out.println("FOR SCISSOR ENTER 2");
+        System.out.println("\n");
+        int per= sc.nextInt();
+
+        switch(per)
+        {
+            case 0 -> System.out.println("YOU SELECTED ROCK\n");
+            case 1 -> System.out.println("YOU SELECTED PAPER\n");
+            case 2 -> System.out.println("YOU SELECTED SCISSOR\n");
+            default -> System.out.println("INVALID INPUT BY YOU\n");
+        }
+        switch(comp)
+        {
+            case 0 -> System.out.println("COMPUTER SELECTED ROCK\n");
+            case 1 -> System.out.println("COMPUTER SELECTED PAPER\n");
+            case 2 -> System.out.println("COMPUTER SELECTED SCISSOR\n");
+            default -> System.out.println("COMPUTER INPUT INVALID\n");
+        }
+        if(per==comp)
+        {
+            System.out.println("TIE\n");
+        }
+        else if(per==0 && comp==1)
+        {
+            System.out.println("COMPUTER WIN\n");
+        }
+        else if(per==1 && comp==2){
+            System.out.println("COMPUTER WINS\n");
+        }
+        else if(per==2 && comp==0){
+            System.out.println("COMPUTER WINS\n");
+        }
+        else{
+            System.out.println("YOUR WIN\n");
+        }
+    }
+}
