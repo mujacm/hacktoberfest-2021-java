@@ -33,6 +33,11 @@ class MyFrame
     private JTextArea tout;
     private JLabel res;
     private JTextArea resadd;
+    String[] bookTitles = new String[] {"+91", "+92",
+            "+93", "+94", "+94", "+95", "+96",
+            "+97", "+98", "+99","+89"};
+
+    private JComboBox<String> bookList ;
  
     private String dates[]
         = { "1", "2", "3", "4", "5",
@@ -81,7 +86,7 @@ class MyFrame
  
         tname = new JTextField();
         tname.setFont(new Font("Arial", Font.PLAIN, 15));
-        tname.setSize(190, 20);
+        tname.setSize(215, 20);
         tname.setLocation(200, 100);
         c.add(tname);
  
@@ -90,11 +95,18 @@ class MyFrame
         mno.setSize(100, 20);
         mno.setLocation(100, 150);
         c.add(mno);
- 
+        
+        
+        bookList = new JComboBox<>(bookTitles);
+        bookList.setFont(new Font("Arial", Font.PLAIN, 15));
+        bookList.setSize(60, 20);
+        bookList.setLocation(200, 150);
+        c.add(bookList);
+        
         tmno = new JTextField();
         tmno.setFont(new Font("Arial", Font.PLAIN, 15));
         tmno.setSize(150, 20);
-        tmno.setLocation(200, 150);
+        tmno.setLocation(265, 150);
         c.add(tmno);
  
         gender = new JLabel("Gender");
@@ -184,10 +196,11 @@ class MyFrame
         tout.setLocation(500, 100);
         tout.setLineWrap(true);
         tout.setEditable(false);
+        tout.setBackground(Color.YELLOW);
         c.add(tout);
  
         res = new JLabel("");
-        res.setFont(new Font("Arial", Font.PLAIN, 20));
+        res.setFont(new Font("Arial", Font.BOLD, 20));
         res.setSize(500, 25);
         res.setLocation(100, 500);
         c.add(res);
@@ -208,13 +221,22 @@ class MyFrame
     public void actionPerformed(ActionEvent e)
     {
         if (e.getSource() == sub) {
-            if (term.isSelected()) {
+        	if(tname.getText().length()==0)
+        	{
+        		res.setForeground(Color.RED);
+        		res.setText("Name Cannot be NULL ");
+        	}
+        	else if(String.valueOf(tmno.getText()).length()<=0 ||String.valueOf(tmno.getText()).length()>10 ) {
+        		res.setForeground(Color.RED);
+        		res.setText("Mobile Number must be 10 character long");
+        	}
+        	else if (term.isSelected()) {
                 String data1;
                 String data
                     = "Name : "
                       + tname.getText() + "\n"
                       + "Mobile : "
-                      + tmno.getText() + "\n";
+                      + bookList.getSelectedItem()+" "+tmno.getText() + "\n";
                 if (male.isSelected())
                     data1 = "Gender : Male"
                             + "\n";
@@ -231,11 +253,13 @@ class MyFrame
                 String data3 = "Address : " + tadd.getText();
                 tout.setText(data + data1 + data2 + data3);
                 tout.setEditable(false);
-                res.setText("Registration Successfully..");
+                res.setForeground(Color.GREEN);
+                res.setText("Registered Successfully...");
             }
             else {
                 tout.setText("");
                 resadd.setText("");
+                res.setForeground(Color.RED);
                 res.setText("Please accept the"
                             + " terms & conditions..");
             }
@@ -257,7 +281,7 @@ class MyFrame
     }
 }
  
-// Driver Code
+
 class Registration {
  
     public static void main(String[] args) throws Exception
