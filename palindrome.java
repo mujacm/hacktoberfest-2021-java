@@ -1,15 +1,16 @@
 public class Main
 {
-	public static void main(String[] args) {
-	   String str = "Noon";
-      StringBuffer newStr =new StringBuffer();
-      for(int i = str.length()-1; i >= 0 ; i--) {
-         newStr = newStr.append(str.charAt(i));
-      }
-      if(str.equalsIgnoreCase(newStr.toString())) {
-         System.out.println("String is palindrome");
-      } else {
-         System.out.println("String is not palindrome");
-      }
-	}
+	public static void main(String[] args){
+            //Scanner sc = new Scanner(System.in);
+            String str = "madam";
+            //String str = sc.next();
+            String strRev = "";
+            for (int i = str.length() -1 ; i >= 0; i--) {
+                strRev += str.charAt(i);
+            }
+            if(str.equalsIgnoreCase(strRev))
+                System.out.println("Palindrome");
+            else
+                System.out.println("Not Palindrome");
+        }
 }
